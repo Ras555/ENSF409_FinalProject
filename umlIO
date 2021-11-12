@@ -1,0 +1,197 @@
+Uml Classes And fields
+----------------------
+
+/** furniture class is a generalized class
+for instances of furniture objects*/
+
+class Furniture:
+----------------
+- ID: String
+- type: String
+- price: int
+- ManuID: String
+
+//getters and setters may be needed
+
+class Chair extends Furniture:
+------------------------------
+
+- legs: boolean
+- arms: boolean
+- seat: boolean
+- cushion: boolean
+
+//getters and setters may be needed
+
+class Desk extends Furniture:
+-----------------------------
+
+- legs: boolean
+- top: boolean
+- drawer: boolean
+
+
+//getters and setters may be needed
+
+class Lamp extends Furniture:
+-----------------------------
+
+- base: boolean
+- bulb: boolean
+
+//getters and setters may be needed
+
+class Filing extends Furniture:
+-------------------------------
+
+- rails: boolean
+- drawers: boolean
+- cabinet: boolean
+
+
+/** manufacturer class which every Furniture object must have,
+*NOTE: manufacturer information does not need to be updated
+*/
+
+class Manufacturer:
+-------------------
+
+- manuID: String
+- name: String
+- phone: String
+- province: String
+
+//getters and setters may be needed
+
+
+
+/** this class will take the get the input from the user 
+*(Don't exactly know how possibly from the keyboard).it uses 
+*the input to generate an order using the Furniture order class
+*It also uses the DBInput class to generate a Furniture list of the
+*inventory.
+*/
+<<I am assuming main will be in the Runner class. Going off that assumption,
+this is how I expect the program to run:
+
+1. First prompt user for DB username and pass.
+2. Generate the furniture list using the DBInput methods.
+3. Prompt user for furniture category,type, # items respectively.
+4. Create an instance of the FurnitureOrder class with access to the Furniture list
+5. Complete order (FurnitureOrder method) and use the OrderFormIO class to create an output
+ .txt file within the current directory.
+6. Terminate the program.
+>>
+
+class Runner:
+-------------
+
+-order: FurnitureOrder
+-type: String
+-fCategory: String
+-numItems: int
+- username: String
+- passwd: String
+
++ generateFlist(username:String, passwd: String) FurnitureList
+
+
+
+//getters and setters may be needed
+
+/**class that uses the FurnitureList to compute the the cheapest price for the requested 
+*furniture. Uses the OrderFormIO class to generate the output file.
+*/
+
+class FurnitureOrder:
+---------------------
+
+- fList: FurnitureList
+- type: String
+- fCategory: String
+- numItems: int
+- toPurchase: FurnitureList
+
++ FurnitureOrder( fList: FurnitureList)
+
++ generateOrder( type:String, fCategory:String, numItems: int) void
+
+- checkInventory() boolean // checks if the order can be completed using fields
+
++ updateDatabase( toPurchase: FurnitureList, username:String, passwd:String)
+
+- computePrice(): FurnitureList
+
++ completeOrder()  // uses instance of OrderFormIO
+
+//getters and setters may be needed
+
+
+
+/**class that prints out the order
+*/
+
+class OrderFormIO:
+------------------
+
+- template: String
+- itemsOrdered: FurnitureList
+
++ fileWrite()
+
+
+//getters and setters may be needed
+
+
+/** class that can read and write to the SQL
+* database. 
+*/
+
+class DBinput
+
+dburl: String
+username: String
+connectT: Connection
+passwd: String
+
++ readIN(): FurnitureList
+
++ updateInventory( purchased: FurnitureList)
+
++ createLink()
+
+
+//getters and setters may be needed
+
+
+
+<< Importing java.util.array might be a good idea for building the list >>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
